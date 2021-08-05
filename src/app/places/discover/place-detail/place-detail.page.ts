@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
+import { Place } from '../../place.model';
+import { PlacesService } from '../../places.service';
 
 @Component({
     selector: 'app-place-detail',
@@ -8,16 +11,40 @@ import { CreateBookingComponent } from '../../../bookings/create-booking/create-
     styleUrls: ['./place-detail.page.scss']
 })
 export class PlaceDetailPage implements OnInit {
-    constructor(private navCtrl: NavController, private modalController: ModalController) {}
+    place: Place;
 
-    ngOnInit() {}
+    constructor(
+        private navCtrl: NavController,
+        private route: ActivatedRoute,
+        private placesService: PlacesService,
+        private modalController: ModalController
+    ) {}
+
+    ngOnInit() {
+        this.route.paramMap.subscribe((paramMap) => {
+            if (!paramMap.has('placeId')) {
+                this.navCtrl.navigateBack('/places/tabs/discover');
+                return;
+            }
+            this.place = this.placesService.getPlace(paramMap.get('placeId'));
+        });
+    }
 
     onBookPlace(): void {
         // We use this instead of the angular router to ensure the proper
         // moveForward or moveBackward animation is utilized and displayed to the user
         // this.navCtrl.navigateBack('/places/tabs/discover');
         this.modalController
-            .create({ component: CreateBookingComponent })
-            .then((modalElement) => modalElement.present());
+            .create({ component: CreateBookingComponent, componentProps: { selectedPlace: this.place } })
+            .then((modalElement) => {
+                modalElement.present();
+                return modalElement.onDidDismiss();
+            })
+            .then(modalData => {
+                console.log(`Modal Data:::${JSON.stringify(modalData, null, 2)}`);
+                if (modalData.role === 'confirm') {
+                    console.log('BOOKED!!!');
+                }
+            });
     }
 }
