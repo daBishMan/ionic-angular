@@ -1,3 +1,36 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <!-- We need to use contentId here, which is set in the router outlet as id property -->
+    <ion-menu side="start" menuId="m1" contentId="main-content">
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>PairBnB</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <!-- It does not create any visible elements on the screen  -->
+                <!-- but will toggle whatever content you have inside of the element -->
+                <ion-menu-toggle menu="m1">
+                    <ion-item lines="none" routerLink="/places/tabs/discover">
+                        <ion-icon name="business" slot="start"> </ion-icon>
+                        <ion-label>Discover Places</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle menu="m1">
+                    <ion-item lines="none" routerLink="/bookings">
+                        <ion-icon name="checkbox-outline" slot="start"> </ion-icon>
+                        <ion-label>Your Bookings</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle menu="m1">
+                    <ion-item lines="none" (click)="onLogout()" button>
+                        <ion-icon name="exit" slot="start"> </ion-icon>
+                        <ion-label>Logout</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <!-- We need to add main here since Ionic uses it -->
+    <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>
