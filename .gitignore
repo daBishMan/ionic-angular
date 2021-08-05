@@ -22,7 +22,10 @@ npm-debug.log*
 /.sass-cache
 /.sourcemaps
 /.versions
-/.vscode
+# We want to add all the json files
+/.vscode/*.json
+# Exclude the settings.json
+!.vscode/settings.json
 /coverage
 /dist
 /node_modules
