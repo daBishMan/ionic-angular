@@ -36,7 +36,7 @@ export class PlacesService {
 
     constructor() {}
 
-    getPlace(id: string) {
+    getPlace(id: string): Place {
         // eslint-disable-next-line no-underscore-dangle
         return {...this._places.find((p) => p.id === id)};
     }
