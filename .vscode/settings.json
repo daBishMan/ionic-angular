@@ -32,5 +32,6 @@
             "color": "#f7f708",
             "column": 120
         }
-    ]
+    ],
+    "conventionalCommits.scopes": ["Adding more code"]
 }
