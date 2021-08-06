@@ -23,7 +23,7 @@ npm-debug.log*
 /.sourcemaps
 /.versions
 # We want to add all the json files
-/.vscode/*.json
+/.vscode/*
 # Exclude the settings.json
 !.vscode/settings.json
 /coverage
