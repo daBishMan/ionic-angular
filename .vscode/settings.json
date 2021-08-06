@@ -21,7 +21,10 @@
         "titleBar.inactiveBackground": "#f7f70899",
         "titleBar.inactiveForeground": "#15202b99",
         "panelTitle.activeBorder": "#f7f708",
-        "sash.hoverBorder": "#f7f708"
+        "sash.hoverBorder": "#f7f708",
+        "statusBar.debuggingBackground": "#0808f7",
+        "statusBar.debuggingBorder": "#0808f7",
+        "statusBar.debuggingForeground": "#e7e7e7"
     },
     "peacock.color": "f7f708",
     "editor.rulers": [
